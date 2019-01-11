@@ -2009,10 +2009,6 @@ var searchByName = function searchByName(items, term) {
       }
     },
     selectSucursal: function selectSucursal(val) {
-      // console.log(this.sucursales.findIndex(val))
-      console.log(this.sucursales.find(function (x) {
-        return x.id === val;
-      }));
       this.moneda = this.sucursales.find(function (x) {
         return x.id === val;
       }).code;
@@ -2036,8 +2032,6 @@ var searchByName = function searchByName(items, term) {
       var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://restcountries.eu/rest/v2/region/americas').then(function (response) {
-        console.log(response.data);
-
         for (var i = 0; i < response.data.length; i++) {
           _this2.sucursales.push({
             id: i,
@@ -2070,15 +2064,13 @@ var searchByName = function searchByName(items, term) {
       });
     },
     register: function register() {
-      //console.log(this.nombreCliente)
-      //this.showRegister = true;
       this.clientes.push({
         name: this.nombreCliente
       });
       this.search = this.nombreCliente;
       this.showDialog = false;
       this.textSnack = 'Se ha registrado con éxito';
-      this.showSnackbar = true; //alert('Se ha agregado con exito')
+      this.showSnackbar = true;
     },
     searchOnTable: function searchOnTable() {
       this.searched = searchByName(this.clientes, this.search);
@@ -2088,7 +2080,6 @@ var searchByName = function searchByName(items, term) {
       this.selectClient = id;
     },
     saveShop: function saveShop() {
-      console.log(this.clientes[this.selectClient].ventas);
       var numeroVenta = this.clientes[this.selectClient].ventas.length + 1;
       this.clientes[this.selectClient].ventas.push({
         id: numeroVenta,
@@ -2105,9 +2096,6 @@ var searchByName = function searchByName(items, term) {
         this.active = index;
       }
     },
-    prueba: function prueba() {
-      console.log(this.selectedProductos);
-    },
     calcularTotal: function calcularTotal() {
       var sumaTotal = 0;
 
@@ -2118,9 +2106,6 @@ var searchByName = function searchByName(items, term) {
       this.totalVenta = sumaTotal;
     },
     openDialogVentas: function openDialogVentas(id) {
-      console.log(this.clienteVentas = this.clientes.find(function (x) {
-        return x.id === id;
-      }));
       this.showDialogVentasCliente = true;
     },
     totalMostrar: function totalMostrar(venta) {
@@ -2128,7 +2113,6 @@ var searchByName = function searchByName(items, term) {
 
       for (var i = 0; i < venta.productos.length; i++) {
         totalventa += venta.productos[i].price * venta.productos[i].quantity;
-        console.log(totalventa);
       }
 
       return totalventa;

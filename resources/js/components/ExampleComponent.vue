@@ -235,10 +235,7 @@ import axios from 'axios'
             },
             selectSucursal (val)
             {
-                // console.log(this.sucursales.findIndex(val))
-                console.log(this.sucursales.find(x => x.id === val))
                 this.moneda = this.sucursales.find(x => x.id === val).code
-                
             }
 
         },
@@ -253,7 +250,7 @@ import axios from 'axios'
             {
                 axios.get('https://restcountries.eu/rest/v2/region/americas')
                     .then((response) => {
-                        console.log(response.data)
+                        
                         for (let i = 0; i < response.data.length; i++) {
                             this.sucursales.push({id: i, name: response.data[i].name, code: response.data[i].currencies[0].code }) 
                         }
@@ -275,14 +272,13 @@ import axios from 'axios'
             },
             register()
             {
-                //console.log(this.nombreCliente)
-                //this.showRegister = true;
+                
                 this.clientes.push({name: this.nombreCliente})
                 this.search = this.nombreCliente
                 this.showDialog = false;
                 this.textSnack = 'Se ha registrado con éxito'
                 this.showSnackbar = true;
-                //alert('Se ha agregado con exito')
+                
             },
             searchOnTable () {
                 this.searched = searchByName(this.clientes, this.search)
@@ -295,7 +291,7 @@ import axios from 'axios'
             },
             saveShop()
             {
-                console.log(this.clientes[this.selectClient].ventas)
+                
                 var numeroVenta = this.clientes[this.selectClient].ventas.length + 1;
                 this.clientes[this.selectClient].ventas.push({id: numeroVenta, productos: this.productosVenta})
                 this.textSnack = 'Se ha registrado con éxito la venta'
@@ -309,10 +305,6 @@ import axios from 'axios'
                 this.active = index
                 }
             },
-            prueba ()
-            {
-                console.log(this.selectedProductos)
-            },
             calcularTotal ()
             {
                 var sumaTotal = 0;
@@ -323,8 +315,6 @@ import axios from 'axios'
             },
             openDialogVentas (id)
             {
-                console.log(this.clienteVentas = this.clientes.find(x => x.id === id))
-                
                 this.showDialogVentasCliente = true
             },
             totalMostrar(venta)
@@ -332,7 +322,7 @@ import axios from 'axios'
                 var totalventa = 0
                 for (let i = 0; i < venta.productos.length; i++) {
                     totalventa += venta.productos[i].price *  venta.productos[i].quantity 
-                    console.log(totalventa)
+                    
                 }
                 
                 return totalventa
